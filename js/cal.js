@@ -1,6 +1,6 @@
-let num1 = +(prompt("num1?"));
-let operator = prompt("operator?");
-let num2 = +(prompt("num2?"));
+// let num1 = +(prompt("num1?"));
+// let operator = prompt("operator?");
+// let num2 = +(prompt("num2?"));
 
 const add = (num1, num2) => num1+num2;
 const subtract = (num1, num2) => num1-num2;
@@ -27,4 +27,4 @@ const run = (num1, operator, num2) => {
 // console.log(multiply(1,1));
 // console.log(divide(1,1));
 
-console.log(run(num1,operator,num2));
+// console.log(run(num1,operator,num2));

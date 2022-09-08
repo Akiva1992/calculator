@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Personal Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cal-body">
+        <div class="header"><span>PersonalCal</span></div>
+        <div class="screen"></div>
+        <div class="btns">
+            <div class="btn clear">C</div>
+            <div class="btn all-clear">CA</div>
+            <div class="btn backspace"><img class="backspace-img" src="./imgs/backspace.svg" alt="backspace"></div>
+            <div class="btn divide">/</div>
+            <div class="btn seven">7</div>
+            <div class="btn eight">8</div>
+            <div class="btn nine">9</div>
+            <div class="btn multiply">X</div>
+            <div class="btn four">4</div>
+            <div class="btn five">5</div>
+            <div class="btn six">6</div>
+            <div class="btn subtract">-</div>
+            <div class="bottom btns">
+                <div class="left btns">
+                    <div class="btn one">1</div>
+                    <div class="btn two">2</div>
+                    <div class="btn three">3</div>
+                    <div class="btn zero">0</div>
+                    <div class="btn dot">.</div>
+                    <div class="btn equals">=</div>
+                </div>
+                <div class="btn add"><span>+</span></div>
+            </div>
+        </div>
+    </div>
     <script src="./js/cal.js"></script>
 </body>
 </html>
