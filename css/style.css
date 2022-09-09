@@ -138,7 +138,7 @@ body{
     flex-direction: column;
     flex-wrap: wrap;
     gap: 0.5em;
-    justify-content: flex-end;
+    justify-content: space-around;
     /* align-items: center; */
     align-content:space-around;
 }
