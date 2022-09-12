@@ -196,3 +196,13 @@ body{
 .btn:active{
     background-color: #a1a2b8;
 }
+
+.result.active{
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.problem.inactive{
+  font-size: 0.8rem;
+  color: rgba(247, 247, 247, 0.74);
+}
