@@ -77,17 +77,18 @@ select {
 /* /////////////////////////////////////////////////////////////////////////////////////////// */
 
 body{
-    font-family: 'Dosis', sans-serif;
-    background-color: #353538;
-    padding: 5%;
-    display: flex;
-    align-items: center;
+  height: 100vh;
+  font-family: 'Dosis', sans-serif;
+  background-color: #353538;
+  padding: 5%;
+  display: flex;
+  align-items: center;
 }
 
 .cal-body{
     background-color: #A7A8CD;
     border-radius: 6px;
-    height: 620px;
+    /* height: 620px; */
     width: 360px;
     margin: 0 auto;
     padding: 1em;
@@ -133,16 +134,16 @@ body{
 }
 
 .btns{
-    width: 80%;
+    width: 90%;
     /* height: 100%; */
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 0.2em;
-    /* justify-content: space-around; */
+    gap: 0.3em;
+    justify-content: space-around;
     /* align-items: center; */
-    /* align-content:space-around; */
+    align-content:space-around;
 }
 
 .line{
@@ -198,9 +199,7 @@ body{
 
 
 
-.btn:hover{
-    opacity: 0.6;
-}
+
 
 .btn:active{
     background-color: #a1a2b8;
@@ -214,4 +213,10 @@ body{
 .problem.inactive{
   font-size: 0.9rem;
   color: rgba(247, 247, 247, 0.74);
+}
+
+@media (hover: hover) {
+  .btn:hover{
+    opacity: 0.6;
+  }
 }
