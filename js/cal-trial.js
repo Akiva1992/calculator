@@ -33,6 +33,7 @@ const equals = document.querySelector(".btn.equals");
 const clear = document.querySelector(".btn.clear");
 const off = document.querySelector(".btn.off"); 
 const plusMinus = document.querySelector(".btn.plus-minus"); 
+const backspace = document.querySelector(".btn.backspace"); 
 
 
 
@@ -46,6 +47,7 @@ numBtn.forEach(btn => {
             result.classList.remove("active");
             problem.classList.remove("inactive");
             num1active = true;
+            equalsActive = false;
             num1Container.innerHTML ="";
             num2Container.innerHTML ="";
             operatorContainer.innerHTML ="";
@@ -79,7 +81,7 @@ operator.forEach(op => {
             console.log(operatorSym)
         }
         else if (!num1active && !num2active && equalsNotZero){
-            console.log("num1active");
+            equalsActive = false;
             result.classList.remove("active");
             problem.classList.remove("inactive");
             num2active = false;
@@ -102,6 +104,7 @@ equals.addEventListener("click", ()=>{
     if (num2active){
         num1active = false;
         num2active = false;
+        equalsActive= true;
         operatorActive = false;    
         result.classList.add("active");
         problem.classList.add("inactive");
@@ -113,7 +116,7 @@ equals.addEventListener("click", ()=>{
 
 /////////////////////////Floating point listener////////////////////////////
 dot.addEventListener("click", ()=>{
-    if (!num1DotClicked){    
+    if (!num1DotClicked && !operatorActive){    
         num1DotClicked = true;
         num1 += ".";
         num1Container.innerHTML = num1
@@ -166,7 +169,36 @@ plusMinus.addEventListener("click",() => {
     }
 });
 
+////////////////////////Backspace listener//////////////////////////////////
+backspace.addEventListener("click", () =>{
+    if (num2Container.innerHTML != "" && !equalsActive){
+        if (num2.charAt(num2.length-1)== "."){
+            num2DotClicked = false;
+        }
+        num2Container.innerHTML = num2Container.innerHTML.slice(0,-1);
+        num2 = num2Container.innerHTML;
+        result.innerHTML = `=${run(num1,operatorSym,num2)}`
+        if (num2Container.innerHTML == ""){
+            result.innerHTML = `=${num1}`
+        }
+    }
+    else if (num2Container.innerHTML == "" && operatorContainer.innerHTML.length > 0 && !equalsActive){
+        operatorActive = false;
+        operatorContainer.innerHTML ="";
+        operatorSym = "";
+    }
+    else if (num2Container.innerHTML == "" && operatorContainer.innerHTML == "" && !equalsActive){
+        if (num1.charAt(num1.length-1)== "."){
+            num1DotClicked = false;
+        }
+        num1Container.innerHTML = num1Container.innerHTML.slice(0,-1);
+        num1 = num1Container.innerHTML;
+        if (num1Container.innerHTML == ""){
+            result.innerHTML = "0";
+        }
+    }
 
+});
 // const selected = operator.some(op => op.classList.contains("selected"));
 // console.log(selected);  
 
