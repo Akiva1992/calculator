@@ -2,7 +2,7 @@
 const add = (num1, num2) => Number(num1)+Number(num2);
 const subtract = (num1, num2) => num1-num2;
 const multiply = (num1, num2) => num1*num2;
-const divide = (num1, num2) => num1/num2;
+const divide = (num1, num2) => (num2 == 0)? "Can't divide by zero" : num1/num2;
 
 const run = (num1, operator, num2) => {
     if (operator==="+"){
@@ -30,14 +30,21 @@ const num2Container = document.querySelector(".num2-container");
 const operator = Array.from(document.querySelectorAll(".btn.operator"));
 const dot = document.querySelector(".btn.dot");
 const equals = document.querySelector(".btn.equals");
+const clear = document.querySelector(".btn.clear");
+const off = document.querySelector(".btn.off"); 
+const plusMinus = document.querySelector(".btn.plus-minus"); 
 
-let num1active = true, num2active = false, operatorActive = false, equalsActive= false; 
+
+
+let num1active = false, num2active = false, operatorActive = false, equalsActive= false, equalsNotZero = true, num1DotClicked = false, num2DotClicked = false;
 let num1 = "", tempNum1="", num2 = "", operatorSym ="";
 
 /////////////////num1 and num2 event listeners////////////////////////////////////////
 numBtn.forEach(btn => {
     btn.addEventListener("click", ()=>{
-        if (!operatorActive){
+        if ((!operatorActive) && equalsNotZero){
+            result.classList.remove("active");
+            problem.classList.remove("inactive");
             num1active = true;
             num1Container.innerHTML ="";
             num2Container.innerHTML ="";
@@ -47,12 +54,15 @@ numBtn.forEach(btn => {
             num1Container.innerHTML = num1
             result.innerHTML = `=${num1}`
         }
-        else if (operatorActive){
+        else if (operatorActive && equalsNotZero){
             num2active = true;
             num2 += btn.innerHTML
             console.log("num2: " +num2)
             num2Container.innerHTML = num2
             result.innerHTML = `=${run(num1,operatorSym,num2)}`
+            if (result.innerHTML == "=Can't divide by zero"){
+                equalsNotZero = false;
+            }
         }
     });
 }); 
@@ -61,14 +71,17 @@ numBtn.forEach(btn => {
 //////////////////////////////////////Operator listener/////////////////////////////////
 operator.forEach(op => {
     op.addEventListener("click", ()=>{
-        if(num1active){
+        if(num1active && equalsNotZero){
             num1active = false;
             operatorActive = true;
             operatorContainer.innerHTML = op.innerHTML;
             operatorSym = op.innerHTML;
             console.log(operatorSym)
         }
-        else if (!num1active && !num2active ){
+        else if (!num1active && !num2active && equalsNotZero){
+            console.log("num1active");
+            result.classList.remove("active");
+            problem.classList.remove("inactive");
             num2active = false;
             num1active = false;
             operatorActive = true;
@@ -90,38 +103,68 @@ equals.addEventListener("click", ()=>{
         num1active = false;
         num2active = false;
         operatorActive = false;    
-        // result.classList.add("active");
-        // problem.classList.add("inactive");
-        // operator.forEach(op=> op.classList.remove("op-selected"));
-        num1 = result.innerHTML.replace("=", "");
-        // num1Container.innerHTML ="";
-        // num2Container.innerHTML ="";
-        // operatorContainer.innerHTML ="";
+        result.classList.add("active");
+        problem.classList.add("inactive");
 
         num1 = "", num2="", operatorSym="";
     }
 });
 
 
-
-
 /////////////////////////Floating point listener////////////////////////////
 dot.addEventListener("click", ()=>{
-    if (!dot.classList.contains("dot-selected-num1")){    
-        dot.classList.add("dot-selected-num1");
+    if (!num1DotClicked){    
+        num1DotClicked = true;
         num1 += ".";
         num1Container.innerHTML = num1
         result.innerHTML = `=${num1}`
     }
-    else if (!dot.classList.contains("dot-selected-num2")&&!result.classList.contains("active")){    
-        dot.classList.add("dot-selected-num2");
+    else if (operatorActive && !num2DotClicked){    
+        num2DotClicked = true;
         num2 += ".";
         num2Container.innerHTML = num2
     }
 });
 
 
+/////////////////////////Clear listener////////////////////////////
+clear.addEventListener("click", ()=>{
+    num1active = false;
+    num2active = false;
+    operatorActive = false; 
+    num1Container.innerHTML ="";
+    num2Container.innerHTML ="";
+    operatorContainer.innerHTML ="";
+    result.innerHTML = "=0";
+    num1active = false, num2active = false, operatorActive = false, equalsActive= false, equalsNotZero = true, num1DotClicked = false, num2DotClicked = false;
+    num1 = "",tempNum1="", num2 = "", operatorSym ="";
 
+});
+
+/////////////////////////Off listener////////////////////////////
+off.addEventListener("click", ()=>{
+    num1active = false;
+    num2active = false;
+    operatorActive = false; 
+    num1Container.innerHTML ="";
+    num2Container.innerHTML ="";
+    operatorContainer.innerHTML ="";
+    result.innerHTML = "";
+    num1active = true, num2active = false, operatorActive = false, equalsActive= false, equalsNotZero = true, num1DotClicked = false, num2DotClicked = false;
+    num1 = "",tempNum1="", num2 = "", operatorSym ="";
+
+});
+
+////////////////////////Plus-minus listener//////////////////////////////
+plusMinus.addEventListener("click",() => {
+    if (result.innerHTML[1] == "-"){
+        console.log("yes")
+        result.innerHTML = result.innerHTML.replace("=-", "=");
+    }
+    else{
+        result.innerHTML = result.innerHTML.replace("=", "=-");
+    }
+});
 
 
 // const selected = operator.some(op => op.classList.contains("selected"));
