@@ -226,3 +226,9 @@ body{
     opacity: 0.6;
   }
 }
+
+@media (min-width: 490px) {
+  .cal-body{
+    width: 400px;
+  }
+}
