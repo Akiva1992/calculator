@@ -78,6 +78,8 @@ select {
 
 body{
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Dosis', sans-serif;
   background-color: #353538;
   padding: 5%;
@@ -95,6 +97,7 @@ body{
     padding: 1em;
     padding-top: 0.5em;
     padding-bottom: 1.2em;
+    margin-bottom: 0.2em;
   
     display: flex;
     flex-direction: column;
@@ -211,6 +214,11 @@ body{
 .problem.inactive{
   font-size: 0.9rem;
   color: rgba(247, 247, 247, 0.74);
+}
+
+.footer{
+  color: #fff;
+  font-size: 0.8rem;
 }
 
 @media (hover: hover) {
