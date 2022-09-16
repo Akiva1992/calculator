@@ -138,7 +138,7 @@ clear.addEventListener("click", ()=>{
     num1Container.innerHTML ="";
     num2Container.innerHTML ="";
     operatorContainer.innerHTML ="";
-    result.innerHTML = "=0";
+    result.innerHTML = "0";
     num1active = false, num2active = false, operatorActive = false, equalsActive= false, equalsNotZero = true, num1DotClicked = false, num2DotClicked = false;
     num1 = "",tempNum1="", num2 = "", operatorSym ="";
 
