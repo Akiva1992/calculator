@@ -152,10 +152,10 @@ body{
 }
 
 .line{
-    width: 100%;
+    width: 85%;
     display: flex;
     justify-content: space-between;
-    gap: 0.4em;
+    gap: 0.2em;
 }
 
 
