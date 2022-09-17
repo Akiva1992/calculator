@@ -152,10 +152,10 @@ body{
 }
 
 .line{
-    width: 85%;
+    width: 82%;
     display: flex;
     justify-content: space-between;
-    gap: 0.2em;
+    gap: 0.3em;
 }
 
 
@@ -199,7 +199,7 @@ body{
 }
 
 .backspace-img{
-    width: 86%;
+    width: 84%;
 }
 
 
